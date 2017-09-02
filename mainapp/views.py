@@ -11,6 +11,7 @@ from forms import *
 import datetime
 
 
+@login_required(login_url='/loginpage/')
 def game(request):
         sets = Set.objects.all()
         if request.session.has_key('message'):
