@@ -9,14 +9,23 @@
 </head>
 <body>
 <div class="container">
-    {% if message %}
-    {{message}}
-    {% endif %}
-    <form action="{% url 'mainapp:login' %}" method="post">
-        {% csrf_token %}
-        {{ logform.as_p }}
-        <input type="submit" value="Submit" />
-    </form>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+            <div class="page-header">
+                Login<br>
+            </div>
+            {% if message %}
+            <div class="jumbotron">
+                {{message}}
+            </div>
+            {% endif %}
+            <form action="{% url 'mainapp:login' %}" method="post">
+                {% csrf_token %}
+                {{ logform.as_p }}
+                <input type="submit" value="Submit" class="button "/>
+            </form>
+        </div>
+    </div>
 </div>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

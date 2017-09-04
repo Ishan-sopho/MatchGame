@@ -5,38 +5,47 @@
     <title>Match the Input</title>
 </head>
 <body>
-you are logged in as {{ user.username }}
-{% if message %}
-{{message}}
-{% endif %}
-<form action="{% url 'mainapp:responses' %}" method="POST">
-    {% csrf_token %}
-    <b>Question {{i.pk}}</b><br>
-    Input: {{i.input}}<br>choices:<br>
-    <input type="hidden" name="pk" value="{{i.pk}}">
-    <fieldset id="{{i.external_id}}" name="{{i.external_id}}">
-        {% if i.choice1 %}
-        <input type="radio" value="{{i.choice1}}" checked="checked" name="{{i.id}}">{{i.choice1}}<br>
+<div class="content">
+    <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+        <div class="page-header">
+            you are logged in as {{ user.username }}<br>
+            Match the input with the most suitable option<br>
+            <a href="{% url 'mainapp:logout' %}">Logout</a>
+        </div>
+        {% if message %}
+        <div class="jumbotron">
+            {{message}}
+        </div>
         {% endif %}
-        {% if i.choice2 %}
-        <input type="radio" value="{{i.choice2}}" checked="checked" name="{{i.id}}">{{i.choice2}}<br>
-        {% endif %}
-        {% if i.choice3 %}
-        <input type="radio" value="{{i.choice3}}" checked="checked" name="{{i.id}}">{{i.choice3}}<br>
-        {% endif %}
-        {% if i.choice4 %}
-        <input type="radio" value="{{i.choice4}}" checked="checked" name="{{i.id}}">{{i.choice4}}<br>
-        {% endif %}
-        {% if i.choice5 %}
-        <input type="radio" value="{{i.choice5}}" checked="checked" name="{{i.id}}">{{i.choice5}}<br>
-        {% endif %}
-        {% if i.choice6 %}
-        <input type="radio" value="{{i.choice6}}" checked="checked" name="{{i.id}}">{{i.choice6}}<br>
-        {% endif %}
-    </fieldset>
-    <input type="submit" value="Submit">
-</form>
-<a href="{% url 'mainapp:logout' %}">Logout</a>
+        <form action="{% url 'mainapp:responses' %}" method="POST">
+            {% csrf_token %}
+            <b>Question {{i.pk}}</b><br>
+            Input: {{i.input}}<br>choices:<br>
+            <input type="hidden" name="pk" value="{{i.pk}}">
+            <fieldset id="{{i.external_id}}" name="{{i.external_id}}">
+                {% if i.choice1 %}
+                <input type="radio" value="{{i.choice1}}" checked="checked" name="{{i.id}}">{{i.choice1}}<br>
+                {% endif %}
+                {% if i.choice2 %}
+                <input type="radio" value="{{i.choice2}}" checked="checked" name="{{i.id}}">{{i.choice2}}<br>
+                {% endif %}
+                {% if i.choice3 %}
+                <input type="radio" value="{{i.choice3}}" checked="checked" name="{{i.id}}">{{i.choice3}}<br>
+                {% endif %}
+                {% if i.choice4 %}
+                <input type="radio" value="{{i.choice4}}" checked="checked" name="{{i.id}}">{{i.choice4}}<br>
+                {% endif %}
+                {% if i.choice5 %}
+                <input type="radio" value="{{i.choice5}}" checked="checked" name="{{i.id}}">{{i.choice5}}<br>
+                {% endif %}
+                {% if i.choice6 %}
+                <input type="radio" value="{{i.choice6}}" checked="checked" name="{{i.id}}">{{i.choice6}}<br>
+                {% endif %}
+            </fieldset>
+            <input type="submit" value="Submit" class="btn-primary btn-lg">
+        </form>
+    </div>
+</div>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <!-- Latest compiled and minified CSS -->
