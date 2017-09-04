@@ -16,11 +16,14 @@ class Set(models.Model):
     timestamp = models.DateTimeField()
 
 
+class Userprofile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    toanswer = models.IntegerField(default=1)
+
+
 class Choice(models.Model):
-    choiceuser = models.ForeignKey(User)
+    choiceuser = models.ForeignKey(Userprofile)
     choiceset = models.ForeignKey(Set)
     choicemade = models.CharField(max_length=200, blank=False, null=False)
     timestamp = models.DateTimeField()
 
-    def __str__(self):
-        return "User : "+self.choiceuser.username+", Date and Time: "+self.timestamp.strftime('%m/%d/%Y')

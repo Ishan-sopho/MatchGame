@@ -12,7 +12,7 @@
     {% if message %}
     {{message}}
     {% endif %}
-    <form action="{% url 'mainapp:loginpage' %}" method="post">
+    <form action="{% url 'mainapp:login' %}" method="post">
         {% csrf_token %}
         {{ logform.as_p }}
         <input type="submit" value="Submit" />
