@@ -6,3 +6,4 @@ from models import *
 
 admin.site.register(Set)
 admin.site.register(Choice)
+admin.site.register(Userprofile)

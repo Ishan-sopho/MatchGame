@@ -2,53 +2,75 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width, initial-scale=1">
     <title>Match the Input</title>
 </head>
 <body>
-<div class="content">
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/build.css' %}">
+<div class="container">
     <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
         <div class="page-header">
-            you are logged in as {{ user.username }}<br>
-            Match the input with the most suitable option<br>
-            <a href="{% url 'mainapp:logout' %}">Logout</a>
+            <p>you are logged in as <b>{{ user.username }}</b><br>
+            Instructions: Match the input with the most suitable option<br>
+                <a href="{% url 'mainapp:logout' %}">Logout</a></p>
         </div>
         {% if message %}
         <div class="jumbotron">
-            {{message}}
+            <p class="text-center">{{message}}</p>
         </div>
         {% endif %}
-        <form action="{% url 'mainapp:responses' %}" method="POST">
+        <p><b>Question {{i.pk}}</b><br><div class="bg-info">Input: {{i.input}}</div><br>Choices:<br></p>
+        <form action="{% url 'mainapp:responses' %}" method="POST" role="form">
             {% csrf_token %}
-            <b>Question {{i.pk}}</b><br>
-            Input: {{i.input}}<br>choices:<br>
             <input type="hidden" name="pk" value="{{i.pk}}">
-            <fieldset id="{{i.external_id}}" name="{{i.external_id}}">
-                {% if i.choice1 %}
-                <input type="radio" value="{{i.choice1}}" checked="checked" name="{{i.id}}">{{i.choice1}}<br>
-                {% endif %}
-                {% if i.choice2 %}
-                <input type="radio" value="{{i.choice2}}" checked="checked" name="{{i.id}}">{{i.choice2}}<br>
-                {% endif %}
-                {% if i.choice3 %}
-                <input type="radio" value="{{i.choice3}}" checked="checked" name="{{i.id}}">{{i.choice3}}<br>
-                {% endif %}
-                {% if i.choice4 %}
-                <input type="radio" value="{{i.choice4}}" checked="checked" name="{{i.id}}">{{i.choice4}}<br>
-                {% endif %}
-                {% if i.choice5 %}
-                <input type="radio" value="{{i.choice5}}" checked="checked" name="{{i.id}}">{{i.choice5}}<br>
-                {% endif %}
-                {% if i.choice6 %}
-                <input type="radio" value="{{i.choice6}}" checked="checked" name="{{i.id}}">{{i.choice6}}<br>
-                {% endif %}
-            </fieldset>
-            <input type="submit" value="Submit" class="btn-primary btn-lg">
+            <div>
+                <fieldset id="{{i.external_id}}" name="{{i.external_id}}">
+                    {% if i.choice1 %}
+                    <div class="checkbox checkbox-success">
+                        <input type="radio" value="{{i.choice1}}" checked="checked" name="{{i.id}}" id="radio1"><label for="radio1">{{i.choice1}}</label><br>
+                    </div>
+                    {% endif %}
+                    {% if i.choice2 %}
+                    <div class="checkbox checkbox-success">
+                        <input type="radio" value="{{i.choice2}}" name="{{i.id}}"id="radio2"><label for="radio2">{{i.choice2}}</label><br>
+                    </div>
+                    {% endif %}
+                    <div class="checkbox checkbox-success">
+                    {% if i.choice3 %}
+                        <input type="radio" value="{{i.choice3}}" name="{{i.id}}"id="radio3"><label for="radio3">{{i.choice3}}</label><br>
+                    </div>
+                    {% endif %}
+                    <div class="checkbox checkbox-success">
+                    {% if i.choice4 %}
+                        <input type="radio" value="{{i.choice4}}" name="{{i.id}}" id="radio4"><label for="radio4">{{i.choice4}}</label><br>
+                    </div>
+                    {% endif %}
+                    {% if i.choice5 %}
+                    <div class="checkbox checkbox-success">
+                        <input type="radio" value="{{i.choice5}}" name="{{i.id}}"id="radio5"><label for="radio5">{{i.choice5}}</label><br>
+                    </div>
+                    {% endif %}
+                    {% if i.choice6 %}
+                    <div class="checkbox checkbox-success">
+                        <input type="radio" value="{{i.choice6}}" name="{{i.id}}"id="radio6"><label for="radio6">{{i.choice6}}</label><br>
+                    </div>
+                    {% endif %}
+                </fieldset>
+            </div>
+            <div style="margin-top:15px">
+                <input type="submit" value="Submit" class="btn-primary btn-lg">
+            </div>
         </form>
     </div>
 </div>
+<!-- Latest compiled and minified Jquery -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 </body>
 </html>

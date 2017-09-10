@@ -19,7 +19,7 @@
                 {{message}}
             </div>
             {% endif %}
-            <form action="{% url 'mainapp:login' %}" method="post">
+            <form action="{% url 'mainapp:login' %}" method="post" role="form">
                 {% csrf_token %}
                 {{ logform.as_p }}
                 <input type="submit" value="Submit" class="button "/>
