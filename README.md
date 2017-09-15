@@ -5,3 +5,7 @@
  * `responses/` : where the repsonses are processed, it redirects back to `game/`
  * `login/` : user login is required to play game, user can be registered only by admin
  * `logout/` : to logout user, it redirects back to `login/`
+
+## deploying on server
+* delete `local.py`
+* change values of `ALLOWED_HOSTS`, `STATIC_ROOT` in `production.py`
