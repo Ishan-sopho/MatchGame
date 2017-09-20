@@ -15,10 +15,16 @@ class Set(models.Model):
     choice6 = models.CharField(max_length=200, blank=True, null=False)
     timestamp = models.DateTimeField()
 
+    def __str__(self):
+        return ' '.join(["id:",self.external_id,"input:",self.input[0:16]])
+
 
 class Userprofile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     toanswer = models.IntegerField(default=1)
+
+    def __str__(self):
+        return ' '.join([self.user.username, self.toanswer])
 
 
 class Choice(models.Model):
@@ -26,4 +32,7 @@ class Choice(models.Model):
     choiceset = models.ForeignKey(Set)
     choicemade = models.CharField(max_length=200, blank=False, null=False)
     timestamp = models.DateTimeField()
+
+    def __str__(self):
+        return ' '.join([self.userprofile.user.username, self.timestamp])
 

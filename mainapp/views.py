@@ -37,7 +37,7 @@ def responses(request):
         choice.save()
         request.user.userprofile.toanswer = int(choicepk)+1
         request.user.userprofile.save()
-        request.session['message'] = "Choices submitted for {}".format(request.user.username)
+        request.session['message'] = "{} questions remaining".format(request.session['remaining'] - request.user.userprofile.toanswer +1)
         return redirect(reverse('mainapp:game'))
     else:
         return redirect(reverse('mainapp:game'))
@@ -58,6 +58,7 @@ def loginpage(request):
                     profile.user = user
                     profile.save()
                 login(request, user)
+                request.session['remaining'] = Set.objects.all().count()
                 return redirect(reverse('mainapp:game'))
             else:
                 message = "Please check login credentials"
@@ -72,7 +73,7 @@ def logoutpage(request):
     if request.session.has_key('completed'):
         message = request.session['completed']
     else:
-        message = request.user.username + "has been logged out. Thank you for your time."
+        message = request.user.username + " has been logged out. Thank you for your time."
     logout(request)
     logform = Loginform()
     return render(request, 'login.html', {'logform': logform, 'message': message})
